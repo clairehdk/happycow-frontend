@@ -61,7 +61,7 @@ const SearchMap = ({ currLat, currLng }) => {
         currLong: lng,
       };
       const response = await axios.post("http://localhost:3001/location", data);
-      // console.log(response.data);
+      console.log(response.data);
       setLoadingDataNearMe(false);
       setDataNearMe(response.data);
     } catch (e) {
@@ -69,7 +69,7 @@ const SearchMap = ({ currLat, currLng }) => {
     }
   };
 
-  const mapRef = useRef();
+  // const mapRef = useRef();
   return loading ? (
     <div>Loading en cours... </div>
   ) : (
@@ -131,7 +131,7 @@ const SearchMap = ({ currLat, currLng }) => {
       ) : (
         <MapContainer
           className="map"
-          center={[position]}
+          center={[lat, lng]}
           zoom={13}
           scrollWheelZoom={false}
         >
