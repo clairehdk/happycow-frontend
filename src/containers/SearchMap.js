@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Map, TileLayer, Popup, Marker } from "react-leaflet";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import GooglePlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-google-places-autocomplete";
 
-// import { geosearch } from "esri-leaflet-geocoder";
+require("dotenv").config();
 
 const SearchMap = ({ currLat, currLng }) => {
   const [data, setData] = useState();
@@ -13,19 +16,10 @@ const SearchMap = ({ currLat, currLng }) => {
   const [coords, setCoords] = useState([]);
   const [status, setStatus] = useState(null);
   const [options, setOptions] = useState(false);
-
-  // const getLatLng = (result: google.maps.GeocoderResult): Promise<any>;
-
-  // const mapRef = useRef();
-
-  const handleOptions = () => {
-    setOptions(true);
-  };
+  const [googleCoords, setGoogleCoords] = useState({ lat: null, lng: null });
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
-    // const { current = {} } = mapRef;
-    // const { leafletElement: map } = current;
-    // const control = geosearch();
     const fetchData = async () => {
       const response = await axios.get("http://localhost:3001/places");
       console.log(response.data);
@@ -35,6 +29,19 @@ const SearchMap = ({ currLat, currLng }) => {
     fetchData();
     // control.addTo(map);
   }, []);
+
+  const handleOptions = () => {
+    setOptions(true);
+  };
+
+  const handleSelectAddress = async (value) => {
+    const results = await geocodeByAddress(value);
+    // console.log(results);
+    // const ll = await getLatLng(results[0]);
+    // // console.log(ll);
+    // setAddress(value);
+    // setGoogleCoords(ll);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -77,8 +84,22 @@ const SearchMap = ({ currLat, currLng }) => {
     // 2.1481181
     <div id="mapid">
       <form className="form_home">
+        {/* <p>lat : {googleCoords.lat}</p>
+        <p>long : {googleCoords.lng}</p>
+        <p>Adresse : {address}</p> */}
         <div style={{ width: "100%" }}>
-          <GooglePlacesAutocomplete apiKey={process.env.API_GOOGLE_KEY} />
+          <GooglePlacesAutocomplete
+            apiKey="AIzaSyAFuJAdaqBVwPpC7z8ueOtd_0Z6pkqLnYQ"
+            selectProps={{
+              address,
+              onChange: setAddress,
+              isOptionSelected: handleSelectAddress,
+            }}
+            // value={address}
+            // onChange={setAddress}
+            // onSelect={handleSelectAddress}
+          />
+          {/* {console.log(value)} */}
         </div>
         <div>
           <input
@@ -97,17 +118,6 @@ const SearchMap = ({ currLat, currLng }) => {
           </div>
         </div>
       </form>
-      {/* <MapContainer
-        className="map"
-        ref={mapRef}
-        center={defaultCenter}
-        zoom={defaultZoom}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-      </MapContainer> */}
       {coords.length < 1 ? (
         <Map
           className="map"
@@ -115,9 +125,6 @@ const SearchMap = ({ currLat, currLng }) => {
           zoom={13}
           scrollWheelZoom={true}
         >
-          <div style={{ width: "100%" }}>
-            <GooglePlacesAutocomplete apiKey="AIzaSyAFuJAdaqBVwPpC7z8ueOtd_0Z6pkqLnYQ" />
-          </div>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
