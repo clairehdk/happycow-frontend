@@ -14,6 +14,8 @@ const SearchMap = ({ currLat, currLng }) => {
   const [status, setStatus] = useState(null);
   const [options, setOptions] = useState(false);
 
+  // const getLatLng = (result: google.maps.GeocoderResult): Promise<any>;
+
   // const mapRef = useRef();
 
   const handleOptions = () => {
@@ -76,7 +78,7 @@ const SearchMap = ({ currLat, currLng }) => {
     <div id="mapid">
       <form className="form_home">
         <div style={{ width: "100%" }}>
-          <GooglePlacesAutocomplete apiKey="AIzaSyAFuJAdaqBVwPpC7z8ueOtd_0Z6pkqLnYQ" />
+          <GooglePlacesAutocomplete apiKey={process.env.API_GOOGLE_KEY} />
         </div>
         <div>
           <input
