@@ -48,7 +48,7 @@ const SearchHome = () => {
             ></input>
             <div className="search_icon">
               <input type="submit" value=""></input>
-              <i class="fas fa-search fa-lg"></i>
+              <i className="fas fa-search fa-lg"></i>
             </div>
           </div>
           <div className={options ? "options" : "hidden"}>
@@ -58,7 +58,7 @@ const SearchHome = () => {
                 type="text"
                 value="Current location"
               ></input>
-              <i class="fas fa-location-arrow"></i>
+              <i className="fas fa-location-arrow"></i>
             </div>
           </div>
         </form>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="69px" viewBox="0 0 54 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Ice Cream</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Ice-Cream" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="map_marker-(1)" fill-rule="nonzero">
+            <path d="M14.282,65.51 C14.282,63.58 19.983,62.02 27.012,62.02 C34.042,62.02 39.743,63.58 39.743,65.51 C39.743,67.44 34.042,69 27.012,69 C19.983,69 14.282,67.44 14.282,65.51" id="Shape" fill-opacity="0.15" fill="#030404"></path>
+            <path d="M54.013,27.13 C54.013,12.15 41.923,0 27.013,0 C12.103,0 0.013,12.15 0.013,27.13 C0.013,40.649 9.847,51.854 22.714,53.924 L27.404,67.45 L31.511,53.888 C44.279,51.735 54.013,40.579 54.013,27.13" id="Shape" fill="#EF447F"></path>
+        </g>
+        <ellipse id="Oval" fill="#EF447F" fill-rule="nonzero" cx="27.1514754" cy="27.3933884" rx="25.2872131" ry="25.4961983"></ellipse>
+        <ellipse id="Oval" fill="#EF447F" fill-rule="nonzero" cx="27.3167213" cy="26.8565289" rx="23.5888525" ry="23.7838017"></ellipse>
+        <ellipse id="Oval" fill="#EF447F" fill-rule="nonzero" cx="27.252459" cy="15.9619835" rx="7.78032787" ry="7.8446281"></ellipse>
+        <ellipse id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="27.252459" cy="15.9619835" rx="6.62819672" ry="6.68297521"></ellipse>
+        <ellipse id="Oval" fill="#EF447F" fill-rule="nonzero" cx="24.3101639" cy="23.9038017" rx="7.78032787" ry="7.8446281"></ellipse>
+        <ellipse id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="24.3101639" cy="23.9038017" rx="6.62819672" ry="6.68297521"></ellipse>
+        <ellipse id="Oval" fill="#EF447F" fill-rule="nonzero" cx="30.3232787" cy="23.9038017" rx="7.78032787" ry="7.8446281"></ellipse>
+        <ellipse id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="30.3232787" cy="23.9038017" rx="6.62819672" ry="6.68297521"></ellipse>
+        <path d="M19.3895082,29.4112397 L35.1154098,29.4112397 L28.4734426,45.0866116 C28.2702826,45.5516769 27.8138485,45.8518465 27.3098361,45.8518465 C26.8058236,45.8518465 26.3493895,45.5516769 26.1462295,45.0866116 L19.3895082,29.4112397 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+        <rect id="Rectangle-path" fill="#EF447F" fill-rule="nonzero" transform="translate(25.804561, 37.564631) rotate(-24.280000) translate(-25.804561, -37.564631) " x="25.1477085" y="28.0747136" width="1.31370492" height="18.9798347"></rect>
+        <rect id="Rectangle-path" fill="#EF447F" fill-rule="nonzero" transform="translate(23.120903, 36.868884) rotate(21.870000) translate(-23.120903, -36.868884) " x="22.4640503" y="28.4133463" width="1.31370492" height="16.9110744"></rect>
+        <rect id="Rectangle-path" fill="#EF447F" fill-rule="nonzero" transform="translate(27.057377, 29.072520) rotate(90.000000) translate(-27.057377, -29.072520) " x="26.4005246" y="19.5826024" width="1.31370492" height="18.9798347"></rect>
+        <rect id="Rectangle-path" fill="#EF447F" fill-rule="nonzero" transform="translate(25.807932, 39.741476) rotate(21.870000) translate(-25.807932, -39.741476) " x="25.1510792" y="34.3381702" width="1.31370492" height="10.8066116" rx="0.656852459"></rect>
+    </g>
+</svg>

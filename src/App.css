@@ -7,6 +7,7 @@ body {
 }
 :root {
   --purple: #7c4fc4;
+  --green: #39843c;
   --vegan: #4caf50;
   --veg: #89298f;
   --veg-opt: #dc5e5d;
@@ -40,6 +41,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 }
 .search {
   position: absolute;
@@ -115,11 +117,72 @@ input[type="submit"] {
   color: var(--purple);
   padding-left: 10px;
 }
+
+/* Home */
+
+.places {
+  margin: 0 auto;
+  width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.place {
+  flex-direction: column;
+  display: flex;
+  width: 270px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.place h1 {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 1.1em;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.place_img {
+  width: 270px;
+  height: 11rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 10px;
+}
+.place_title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.place .icon {
+  width: 25px;
+  margin-right: 5px;
+}
+.place_description {
+  overflow: hidden;
+  width: 100%;
+}
+.place_description p {
+  font-weight: 300;
+  line-height: 1.5em;
+  color: var(--gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 /* Search Map */
 
 #mapid {
-  height: 100vh;
+  height: 90vh;
   display: flex;
+}
+#mapid .form_home > div:first-child {
+  display: block;
 }
 #mapid .form_home {
   padding-left: 10px;

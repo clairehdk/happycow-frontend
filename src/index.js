@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import "esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css";
+import "esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js";
 
 ReactDOM.render(
   <React.StrictMode>

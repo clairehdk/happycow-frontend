@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="69px" viewBox="0 0 54 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Market Vendor</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Market-Vendor" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="map_marker-(1)" transform="translate(0.000000, -31.000000)" fill-rule="nonzero">
+            <path d="M14.282,96.51 C14.282,94.58 19.983,93.02 27.012,93.02 C34.042,93.02 39.743,94.58 39.743,96.51 C39.743,98.44 34.042,100 27.012,100 C19.983,100 14.282,98.44 14.282,96.51" id="Shape" fill-opacity="0.15" fill="#030404"></path>
+            <path d="M54.013,58.13 C54.013,43.15 41.923,31 27.013,31 C12.103,31 0.013,43.15 0.013,58.13 C0.013,71.649 9.847,82.854 22.714,84.924 L27.404,98.45 L31.511,84.888 C44.279,82.735 54.013,71.579 54.013,58.13 L57.5,0.5" id="Shape" fill="#2D3997"></path>
+        </g>
+        <ellipse id="Oval" fill="#2D3997" fill-rule="nonzero" cx="27.1514754" cy="27.3933884" rx="25.2872131" ry="25.4961983"></ellipse>
+        <ellipse id="Oval" fill="#2D3997" fill-rule="nonzero" cx="27.2111475" cy="27.0138843" rx="23.6118033" ry="23.8069421"></ellipse>
+        <polygon id="Shape" fill="#FFFFFF" fill-rule="nonzero" points="27.2157377 20.4558678 42.8865574 20.4558678 42.8865574 17.6882645 27.2157377 9.80198347 11.5403279 17.6882645 11.5403279 20.4558678"></polygon>
+        <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" x="12.8531148" y="22.0247934" width="1.75344262" height="18.0033058"></rect>
+        <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" x="16.4518033" y="29.0919008" width="10.7593443" height="2.34181818"></rect>
+        <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" x="18.5357377" y="31.0310744" width="1.76262295" height="9.00165289"></rect>
+        <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" transform="translate(40.697049, 31.031074) rotate(-180.000000) translate(-40.697049, -31.031074) " x="39.8203279" y="22.0294215" width="1.75344262" height="18.0033058"></rect>
+        <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" transform="translate(32.595410, 30.262810) rotate(-180.000000) translate(-32.595410, -30.262810) " x="27.2157377" y="29.0919008" width="10.7593443" height="2.34181818"></rect>
+        <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" transform="translate(35.005246, 35.527273) rotate(-180.000000) translate(-35.005246, -35.527273) " x="34.1239344" y="31.0264463" width="1.76262295" height="9.00165289"></rect>
+        <rect id="Rectangle-path" fill="#FEFEFE" fill-rule="nonzero" x="24.732459" y="29.0919008" width="5.03081967" height="2.34181818"></rect>
+    </g>
+</svg>
