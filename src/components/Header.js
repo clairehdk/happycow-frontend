@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.svg";
 
-const Header = () => {
+const Header = ({ setModal, userToken, setUser }) => {
   return (
     <div className="header">
       <Link to="/">
@@ -10,8 +10,11 @@ const Header = () => {
       </Link>
 
       <div>
-        <a href="">Login / Join</a>
-        <a href="">Login / Join</a>
+        {userToken ? (
+          <button onClick={() => setUser(null)}>Se déconnecter</button>
+        ) : (
+          <button onClick={setModal}>Login | Join</button>
+        )}
       </div>
     </div>
   );

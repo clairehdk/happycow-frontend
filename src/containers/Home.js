@@ -2,6 +2,7 @@ import SearchHome from "../components/SearchHome";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Places from "../components/Places";
+import SearchBar from "../components/SearchBar";
 
 const Home = () => {
   const [data, setData] = useState();
@@ -41,8 +42,10 @@ const Home = () => {
   return loading ? (
     <div>Loading en cours</div>
   ) : (
-    <div>
+    <div className="home">
       <SearchHome />
+      <h2>Nos restaurants</h2>
+      <SearchBar />
       <div className="places">
         {data.map((place) => {
           return <Places key={place.placeId} data={place} />;
