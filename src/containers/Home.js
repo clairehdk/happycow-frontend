@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3001/places");
+      const response = await axios.get("http://localhost:3001/");
       console.log(response.data);
       setData(response.data);
       setLoading(false);

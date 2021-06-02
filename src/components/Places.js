@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import veg_cat from "../assets/img/vegetarian_cat.svg";
 import vegan_cat from "../assets/img/vegan_cat.svg";
 import veg_store from "../assets/img/veg_store.svg";
@@ -17,46 +19,48 @@ import vendor from "../assets/img/vendor_cat.svg";
 const Places = ({ data }) => {
   return (
     <div className="place">
-      <img className="place_img" src={data.thumbnail} alt="place" />
-      <div className="place_description">
-        <div className="place_title">
-          <img
-            className="icon"
-            src={
-              data.type === "Veg Store"
-                ? veg_store
-                : data.type === "vegan"
-                ? vegan_cat
-                : data.type === "vegetarian"
-                ? veg_cat
-                : data.type === "Other"
-                ? other
-                : data.type === "Health Store"
-                ? health_store
-                : data.type === "veg-options"
-                ? veg_options
-                : data.type === "Ice Cream"
-                ? ice_cream
-                : data.type === "Juice Bar"
-                ? juice_bar
-                : data.type === "Professional" || data.type === "Organization"
-                ? professional
-                : data.type === "Bakery"
-                ? bakery
-                : data.type === "Catering"
-                ? catering
-                : data.type === "Delivery"
-                ? delivery
-                : data.type === "Food Truck"
-                ? food_truck
-                : data.type === "Market Vendor" && vendor
-            }
-          ></img>
-          <h1>{data.name}</h1>
+      <Link to={`/places/${data.placeId}`}>
+        <img className="place_img" src={data.thumbnail} alt="place" />
+        <div className="place_description">
+          <div className="place_title">
+            <img
+              className="icon"
+              src={
+                data.type === "Veg Store"
+                  ? veg_store
+                  : data.type === "vegan"
+                  ? vegan_cat
+                  : data.type === "vegetarian"
+                  ? veg_cat
+                  : data.type === "Other"
+                  ? other
+                  : data.type === "Health Store"
+                  ? health_store
+                  : data.type === "veg-options"
+                  ? veg_options
+                  : data.type === "Ice Cream"
+                  ? ice_cream
+                  : data.type === "Juice Bar"
+                  ? juice_bar
+                  : data.type === "Professional" || data.type === "Organization"
+                  ? professional
+                  : data.type === "Bakery"
+                  ? bakery
+                  : data.type === "Catering"
+                  ? catering
+                  : data.type === "Delivery"
+                  ? delivery
+                  : data.type === "Food Truck"
+                  ? food_truck
+                  : data.type === "Market Vendor" && vendor
+              }
+            ></img>
+            <h1>{data.name}</h1>
+          </div>
+          {/* <p>{data.address.substring(",", "france")}</p> */}
+          <p>{data.description}</p>
         </div>
-        {/* <p>{data.address.substring(",", "france")}</p> */}
-        <p>{data.description}</p>
-      </div>
+      </Link>
     </div>
   );
 };

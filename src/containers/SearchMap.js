@@ -6,8 +6,6 @@ import GooglePlacesAutocomplete, {
   getLatLng,
 } from "react-google-places-autocomplete";
 
-require("dotenv").config();
-
 const SearchMap = ({ currLat, currLng }) => {
   const [data, setData] = useState();
   const [dataNearMe, setDataNearMe] = useState();
@@ -16,12 +14,23 @@ const SearchMap = ({ currLat, currLng }) => {
   const [coords, setCoords] = useState([]);
   const [status, setStatus] = useState(null);
   const [options, setOptions] = useState(false);
-  const [googleCoords, setGoogleCoords] = useState({ lat: null, lng: null });
-  const [address, setAddress] = useState("");
+  // const [googleCoords, setGoogleCoords] = useState({ lat: null, lng: null });
+  // const [address, setAddress] = useState("");
+  const params = {
+    access_key: "93f41a23e704c600a59357c4aeee42ea",
+    query: "1600 Pennsylvania Ave NW",
+  };
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3001/places");
+      const result = await axios.get(
+        "https://api.positionstack.com/v1/forward",
+        {
+          params,
+        }
+      );
+      const response = await axios.get("http://localhost:3001/");
+      // console.log(result.data);
       console.log(response.data);
       setData(response.data);
       setLoading(false);
@@ -34,14 +43,13 @@ const SearchMap = ({ currLat, currLng }) => {
     setOptions(true);
   };
 
-  const handleSelectAddress = async (value) => {
-    const results = await geocodeByAddress(value);
-    // console.log(results);
-    // const ll = await getLatLng(results[0]);
-    // // console.log(ll);
-    // setAddress(value);
-    // setGoogleCoords(ll);
-  };
+  // const handleSelectAddress = async (value) => {
+  //   const results = await geocodeByAddress(value);
+  //   console.log(results);
+  //   const ll = await getLatLng(results[0]);
+  //   setAddress(value);
+  //   setGoogleCoords(ll);
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -87,20 +95,18 @@ const SearchMap = ({ currLat, currLng }) => {
         {/* <p>lat : {googleCoords.lat}</p>
         <p>long : {googleCoords.lng}</p>
         <p>Adresse : {address}</p> */}
-        <div style={{ width: "100%" }}>
+        {/* <div style={{ width: "100%" }}>
           <GooglePlacesAutocomplete
             apiKey="AIzaSyAFuJAdaqBVwPpC7z8ueOtd_0Z6pkqLnYQ"
             selectProps={{
               address,
               onChange: setAddress,
-              isOptionSelected: handleSelectAddress,
             }}
             // value={address}
             // onChange={setAddress}
-            // onSelect={handleSelectAddress}
+            onSelect={handleSelectAddress}
           />
-          {/* {console.log(value)} */}
-        </div>
+        </div> */}
         <div>
           <input
             className="search_for"
