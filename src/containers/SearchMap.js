@@ -16,21 +16,18 @@ const SearchMap = ({ currLat, currLng }) => {
   const [options, setOptions] = useState(false);
   // const [googleCoords, setGoogleCoords] = useState({ lat: null, lng: null });
   // const [address, setAddress] = useState("");
-  const params = {
-    access_key: "93f41a23e704c600a59357c4aeee42ea",
-    query: "1600 Pennsylvania Ave NW",
-  };
+  // const params = {
+  //   access_key: "93f41a23e704c600a59357c4aeee42ea",
+  //   query: "1600 Pennsylvania Ave NW",
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(
-        "https://api.positionstack.com/v1/forward",
-        {
-          params,
-        }
-      );
       const response = await axios.get("http://localhost:3001/");
-      // console.log(result.data);
+      const result = await axios.get(
+        "http://api.positionstack.com/v1/forward?access_key=0ee6ece083ef976e3f687991f221fd78&query=9 Rue du Château d'Eau, 75010 Paris"
+      );
+      console.log(result.data);
       console.log(response.data);
       setData(response.data);
       setLoading(false);
@@ -91,11 +88,12 @@ const SearchMap = ({ currLat, currLng }) => {
   ) : (
     // 2.1481181
     <div id="mapid">
-      <form className="form_home">
-        {/* <p>lat : {googleCoords.lat}</p>
+      <div className="left_col">
+        <form className="form_home">
+          {/* <p>lat : {googleCoords.lat}</p>
         <p>long : {googleCoords.lng}</p>
         <p>Adresse : {address}</p> */}
-        {/* <div style={{ width: "100%" }}>
+          {/* <div style={{ width: "100%" }}>
           <GooglePlacesAutocomplete
             apiKey="AIzaSyAFuJAdaqBVwPpC7z8ueOtd_0Z6pkqLnYQ"
             selectProps={{
@@ -107,23 +105,31 @@ const SearchMap = ({ currLat, currLng }) => {
             onSelect={handleSelectAddress}
           />
         </div> */}
-        <div>
-          <input
-            className="search_for"
-            type="text"
-            placeholder="Search for city, region or zipcode"
-            onClick={handleOptions}
-          ></input>
-        </div>
-        <div className={options ? "options" : "hidden"}>
-          <div className="search_opt">
-            <button onClick={handleSubmit}>
-              Current location
-              <i className="fas fa-location-arrow"></i>
-            </button>
+          <div>
+            <input
+              className="search_for"
+              type="text"
+              placeholder="Search for city, region or zipcode"
+              onClick={handleOptions}
+            ></input>
           </div>
-        </div>
-      </form>
+          <div className={options ? "options" : "hidden"}>
+            <div className="search_opt">
+              <button onClick={handleSubmit}>
+                Current location
+                <i className="fas fa-location-arrow"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        {data.map((place) => {
+          return (
+            <div>
+              <p>{place.name}</p>
+            </div>
+          );
+        })}
+      </div>
       {coords.length < 1 ? (
         <Map
           className="map"

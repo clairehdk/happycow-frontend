@@ -86,9 +86,12 @@ input[type="submit"] {
   background-color: var(--purple);
   border-top-right-radius: 0.375rem;
 }
+.form_home a {
+  width: 9%;
+}
 .search_icon {
   position: relative;
-  width: 9%;
+  width: 100%;
   display: flex;
   align-items: center;
   height: 100%;
@@ -184,10 +187,12 @@ input[type="submit"] {
 #mapid .form_home > div:first-child {
   display: block;
 }
+#mapid .left_col {
+  width: 50%;
+}
 #mapid .form_home {
   padding-left: 10px;
   padding-top: 10px;
-  width: 50%;
 }
 #mapid input[type="text"] {
   border-top-right-radius: 0.375rem;

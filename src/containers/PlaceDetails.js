@@ -11,7 +11,7 @@ const PlaceDetails = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/places/${placeId}`
+          `http://localhost:3001/places/:${placeId}`
         );
         console.log(response.data);
         setData(response.data);

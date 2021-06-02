@@ -1,7 +1,7 @@
 import React from "react";
 import donuts from "../assets/img/home.webp";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const SearchHome = () => {
   const history = useHistory();
@@ -46,10 +46,12 @@ const SearchHome = () => {
               placeholder="Search for city, region or zipcode"
               onClick={handleOptions}
             ></input>
-            <div className="search_icon">
-              <input type="submit" value=""></input>
-              <i className="fas fa-search fa-lg"></i>
-            </div>
+            <Link to="/searchmap">
+              <div className="search_icon">
+                <input type="submit" value=""></input>
+                <i className="fas fa-search fa-lg"></i>
+              </div>
+            </Link>
           </div>
           <div className={options ? "options" : "hidden"}>
             <div className="search_opt">
