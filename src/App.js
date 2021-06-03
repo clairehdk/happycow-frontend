@@ -18,6 +18,11 @@ function App() {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [limit, setLimit] = useState(100);
+  const [page, setPage] = useState(1);
+  const [skip, setSkip] = useState(0);
 
   // AFFICHAGE DE LA MODAL D'INSCRIPTION / LOGIN
   const setModal = () => {
@@ -39,6 +44,19 @@ function App() {
   // RECUPERATION DES MESSAGES D'ERREUR
   const setError = (e) => {
     setErrorMessage(e);
+  };
+
+  // SEARCH BAR
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    // Peut-être setPage(1) si ça fou la merde
+    setPage(1);
+    setSkip(0);
+    setName(value);
+  };
+
+  const handleType = (event) => {
+    setType(event.target.value);
   };
 
   return (
@@ -69,7 +87,18 @@ function App() {
           <SearchMap />
         </Route>
         <Route path="/">
-          <Home />
+          <Home
+            handleSearch={handleSearch}
+            handleType={handleType}
+            setName={setName}
+            name={name}
+            setLimit={setLimit}
+            limit={limit}
+            skip={skip}
+            setLimit={setLimit}
+            handleType={handleType}
+            type={type}
+          />
         </Route>
       </Switch>
     </Router>

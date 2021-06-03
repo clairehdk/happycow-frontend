@@ -1,13 +1,13 @@
 import React from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ handleSearch, handleType }) => {
   return (
     <div className="search_bar">
-      <input placeholder="Ex : La veganie ..."></input>
+      <input placeholder="Ex : La veganie ..." onChange={handleSearch}></input>
       <div>
-        <button>Vegan</button>
-        <button>Vegetarian</button>
-        <button>Veg-options</button>
+        <input onClick={handleType} value="vegan" />
+        <input onClick={handleType} value="vegetarian" />
+        <input onClick={handleType} value="veg-options" />
       </div>
     </div>
   );

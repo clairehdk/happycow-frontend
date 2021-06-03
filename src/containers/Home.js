@@ -3,8 +3,18 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Places from "../components/Places";
 import SearchBar from "../components/SearchBar";
+import Limit from "../components/Limit";
 
-const Home = () => {
+const Home = ({
+  name,
+  setName,
+  handleSearch,
+  limit,
+  setLimit,
+  skip,
+  type,
+  handleType,
+}) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [lat, setLat] = useState(null);
@@ -13,13 +23,15 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3001/");
+      const response = await axios.get(
+        `http://localhost:3001/?name=${name}&type=${type}&limit=${limit}`
+      );
       console.log(response.data);
       setData(response.data);
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [name, type, limit]);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -45,7 +57,8 @@ const Home = () => {
     <div className="home">
       <SearchHome />
       <h2>Nos restaurants</h2>
-      <SearchBar />
+      <SearchBar handleSearch={handleSearch} handleType={handleType} />
+      <Limit setLimit={setLimit} />
       <div className="places">
         {data.map((place) => {
           return <Places key={place.placeId} data={place} />;
