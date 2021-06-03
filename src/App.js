@@ -1,6 +1,7 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 // Import des Hooks
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -17,12 +18,38 @@ import SignUp from "./containers/SignUp";
 function App() {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
+  const [userId, setUserId] = useState(Cookies.get("userId") || null);
   const [errorMessage, setErrorMessage] = useState("");
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [limit, setLimit] = useState(100);
   const [page, setPage] = useState(1);
   const [skip, setSkip] = useState(0);
+  const [favorites, setFavorites] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  // RECUPERATION DES FAVORIS
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = { userId };
+        const response = await axios.post(
+          `http://localhost:3001/user/favs`,
+          data,
+          {
+            headers: {
+              authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
+        setFavorites(response.data);
+        setIsLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  }, []);
 
   // AFFICHAGE DE LA MODAL D'INSCRIPTION / LOGIN
   const setModal = () => {
@@ -31,13 +58,17 @@ function App() {
   };
 
   // MISE EN PLACE DU TOKEN
-  const setUser = (token) => {
+  const setUser = (token, userId) => {
     if (token) {
       Cookies.set("userToken", token, { expires: 1 });
+      Cookies.set("userId", userId, { expires: 10 });
       setUserToken(token);
+      setUserId(userId);
     } else {
       Cookies.remove("userToken");
+      Cookies.remove("userId");
       setUserToken(null);
+      setUserId(null);
     }
   };
 
@@ -88,6 +119,7 @@ function App() {
         </Route>
         <Route path="/">
           <Home
+            userToken={userToken}
             handleSearch={handleSearch}
             handleType={handleType}
             setName={setName}
@@ -96,8 +128,8 @@ function App() {
             limit={limit}
             skip={skip}
             setLimit={setLimit}
-            handleType={handleType}
             type={type}
+            favorites={favorites}
           />
         </Route>
       </Switch>

@@ -65,7 +65,8 @@ const SignUp = ({ setError, setUser, errorMessage, setErrorMessage }) => {
       const response = await axios.post("http://localhost:3001/signup", data);
       console.log(response.data);
       const token = response.data.token;
-      setUser(token);
+      const userId = response.data._id;
+      setUser(token, userId);
       history.push("/");
     } catch (e) {
       console.log(e);

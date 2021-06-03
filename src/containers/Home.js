@@ -14,6 +14,8 @@ const Home = ({
   skip,
   type,
   handleType,
+  favorites,
+  userToken,
 }) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
@@ -23,15 +25,27 @@ const Home = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/?name=${name}&type=${type}&limit=${limit}`
-      );
-      console.log(response.data);
-      setData(response.data);
-      setLoading(false);
+      try {
+        let response;
+        if (name) {
+          response = await axios.get(
+            `http://localhost:3001/?name=${name}&types=${type}&limit=${limit}`
+          );
+        } else {
+          response = await axios.get(
+            `http://localhost:3001/?types=${name}&name=${type}&limit=${limit}`
+          );
+        }
+
+        // console.log(response.data);
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        alert(error.message);
+      }
     };
     fetchData();
-  }, [name, type, limit]);
+  }, [type, name, limit]);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -61,7 +75,14 @@ const Home = ({
       <Limit setLimit={setLimit} />
       <div className="places">
         {data.map((place) => {
-          return <Places key={place.placeId} data={place} />;
+          return (
+            <Places
+              key={place.placeId}
+              data={place}
+              userToken={userToken}
+              favorites={favorites}
+            />
+          );
         })}
         {/* <button onClick={getLocation}>Get Location</button>
         <h1>Coordinates</h1>

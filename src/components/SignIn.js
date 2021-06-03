@@ -26,7 +26,8 @@ const SignIn = ({ setUser, setError, errorMessage, setIsModalOpened }) => {
       };
       const response = await axios.post(`http://localhost:3001/signin`, data);
       const token = response.data.token;
-      setUser(token);
+      const userId = response.data._id;
+      setUser(token, userId);
       setIsModalOpened(false);
       history.push("/");
     } catch (e) {
