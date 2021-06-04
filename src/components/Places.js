@@ -61,6 +61,20 @@ const Places = ({ data, userToken, favorites }) => {
     }
   };
 
+  const displayStars = (number) => {
+    let tab = [];
+
+    for (let i = 1; i <= 5; i++) {
+      if (number < i) {
+        tab.push(<i class="far fa-star"></i>);
+      } else {
+        tab.push(<i class="fas fa-star"></i>);
+      }
+    }
+
+    return tab;
+  };
+
   return (
     <div className="place">
       <Link to={`/places/${data.placeId}`}>
@@ -70,48 +84,52 @@ const Places = ({ data, userToken, favorites }) => {
           {userToken && (
             <button className="icon_fav" onClick={addFav}>
               {isFav ? (
-                <i className="fas fa-heart"></i>
+                <i className="fas fa-heart fa-lg"></i>
               ) : (
-                <i className="far fa-heart"></i>
+                <i className="far fa-heart fa-lg"></i>
               )}
             </button>
           )}
         </div>
         <div className="place_description">
           <div className="place_title">
-            <img
-              className="icon"
-              src={
-                data.type === "Veg Store"
-                  ? veg_store
-                  : data.type === "vegan"
-                  ? vegan_cat
-                  : data.type === "vegetarian"
-                  ? veg_cat
-                  : data.type === "Other"
-                  ? other
-                  : data.type === "Health Store"
-                  ? health_store
-                  : data.type === "veg-options"
-                  ? veg_options
-                  : data.type === "Ice Cream"
-                  ? ice_cream
-                  : data.type === "Juice Bar"
-                  ? juice_bar
-                  : data.type === "Professional" || data.type === "Organization"
-                  ? professional
-                  : data.type === "Bakery"
-                  ? bakery
-                  : data.type === "Catering"
-                  ? catering
-                  : data.type === "Delivery"
-                  ? delivery
-                  : data.type === "Food Truck"
-                  ? food_truck
-                  : data.type === "Market Vendor" && vendor
-              }
-            ></img>
-            <h1>{data.name}</h1>
+            <div>
+              <img
+                className="icon"
+                src={
+                  data.type === "Veg Store"
+                    ? veg_store
+                    : data.type === "vegan"
+                    ? vegan_cat
+                    : data.type === "vegetarian"
+                    ? veg_cat
+                    : data.type === "Other"
+                    ? other
+                    : data.type === "Health Store"
+                    ? health_store
+                    : data.type === "veg-options"
+                    ? veg_options
+                    : data.type === "Ice Cream"
+                    ? ice_cream
+                    : data.type === "Juice Bar"
+                    ? juice_bar
+                    : data.type === "Professional" ||
+                      data.type === "Organization"
+                    ? professional
+                    : data.type === "Bakery"
+                    ? bakery
+                    : data.type === "Catering"
+                    ? catering
+                    : data.type === "Delivery"
+                    ? delivery
+                    : data.type === "Food Truck"
+                    ? food_truck
+                    : data.type === "Market Vendor" && vendor
+                }
+              ></img>
+              <h1>{data.name}</h1>
+            </div>
+            <div>{displayStars(data.rating)}</div>
           </div>
           {/* <p>{data.address.substring(",", "france")}</p> */}
           <p>{data.description}</p>

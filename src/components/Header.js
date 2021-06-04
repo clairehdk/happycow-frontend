@@ -8,13 +8,17 @@ const Header = ({ setModal, userToken, setUser }) => {
       <Link to="/">
         <img className="logo" src={logo} alt="logo" />
       </Link>
-
       <div>
-        {userToken ? (
-          <button onClick={() => setUser(null)}>Se déconnecter</button>
-        ) : (
-          <button onClick={setModal}>Login | Join</button>
-        )}
+        <Link to="/favorites">
+          <div>{userToken && <button>Mes Favoris</button>}</div>
+        </Link>
+        <div>
+          {userToken ? (
+            <button onClick={() => setUser(null)}>Se déconnecter</button>
+          ) : (
+            <button onClick={setModal}>Login | Join</button>
+          )}
+        </div>
       </div>
     </div>
   );

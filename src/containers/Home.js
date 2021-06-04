@@ -4,6 +4,7 @@ import axios from "axios";
 import Places from "../components/Places";
 import SearchBar from "../components/SearchBar";
 import Limit from "../components/Limit";
+import Loader from "../components/Loader";
 
 const Home = ({
   name,
@@ -13,6 +14,7 @@ const Home = ({
   setLimit,
   skip,
   type,
+  setType,
   handleType,
   favorites,
   userToken,
@@ -26,17 +28,9 @@ const Home = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response;
-        if (name) {
-          response = await axios.get(
-            `http://localhost:3001/?name=${name}&types=${type}&limit=${limit}`
-          );
-        } else {
-          response = await axios.get(
-            `http://localhost:3001/?types=${name}&name=${type}&limit=${limit}`
-          );
-        }
-
+        const response = await axios.get(
+          `http://localhost:3001/?name=${name}&type=${type}&limit=${limit}`
+        );
         // console.log(response.data);
         setData(response.data);
         setLoading(false);
@@ -66,12 +60,17 @@ const Home = ({
   };
 
   return loading ? (
-    <div>Loading en cours</div>
+    <Loader />
   ) : (
     <div className="home">
       <SearchHome />
       <h2>Nos restaurants</h2>
-      <SearchBar handleSearch={handleSearch} handleType={handleType} />
+      <SearchBar
+        handleSearch={handleSearch}
+        handleType={handleType}
+        type={type}
+        setType={setType}
+      />
       <Limit setLimit={setLimit} />
       <div className="places">
         {data.map((place) => {

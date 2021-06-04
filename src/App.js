@@ -14,6 +14,7 @@ import Header from "./components/Header";
 import SearchMap from "./containers/SearchMap";
 import PlaceDetails from "./containers/PlaceDetails";
 import SignUp from "./containers/SignUp";
+import Favorites from "./containers/Favorites";
 
 function App() {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -42,6 +43,7 @@ function App() {
             },
           }
         );
+        console.log(response.data);
         setFavorites(response.data);
         setIsLoading(false);
       } catch (e) {
@@ -103,6 +105,9 @@ function App() {
       />
       <Header userToken={userToken} setModal={setModal} setUser={setUser} />
       <Switch>
+        <Route path="/favorites">
+          <Favorites userToken={userToken} userId={userId} />
+        </Route>
         <Route path="/signup">
           <SignUp
             setUser={setUser}
@@ -129,6 +134,7 @@ function App() {
             skip={skip}
             setLimit={setLimit}
             type={type}
+            setType={setType}
             favorites={favorites}
           />
         </Route>

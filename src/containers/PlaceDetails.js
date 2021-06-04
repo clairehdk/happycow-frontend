@@ -16,6 +16,8 @@ import delivery from "../assets/img/delivery_cat.svg";
 import food_truck from "../assets/img/truck_cat.svg";
 import vendor from "../assets/img/vendor_cat.svg";
 
+import { Map, TileLayer, Popup, Marker } from "react-leaflet";
+
 const PlaceDetails = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -40,7 +42,7 @@ const PlaceDetails = () => {
   return loading ? (
     <div>Loading...</div>
   ) : (
-    <div>
+    <div className="container">
       <div className="details_header">
         <div className="head">
           <h1>{data.name}</h1>
@@ -78,6 +80,54 @@ const PlaceDetails = () => {
               }
             ></img>
             <p>{data.type}</p>
+          </div>
+        </div>
+        <div className="content">
+          <div className="sub_content">
+            <div style={{ width: "55%" }}>
+              <div style={{ display: "flex", width: "100%" }}>
+                <div className="block">
+                  <div className="col-left">
+                    <i class="fas fa-phone-alt fa-lg"></i>
+                  </div>
+                  <div className="col-right">
+                    <h1>CONTACT</h1>
+                    <p>{data.phone}</p>
+                  </div>
+                </div>
+                <div className="block">
+                  <div className="col-left">
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                  </div>
+                  <div className="col-right">
+                    <h1>FIND</h1>
+                    <p>{data.address}</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="content_description">{data.description}</p>
+              </div>
+            </div>
+            <Map
+              style={{ height: "200px", width: "500px" }}
+              center={[data.location.lat, data.location.lng]}
+              zoom={13}
+              scrollWheelZoom={true}
+            >
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker
+                position={[data.location.lat, data.location.lng]}
+              ></Marker>
+            </Map>
+          </div>
+          <div className="pictures">
+            {data.pictures.map((picture, index) => {
+              return <img className="picture_place" src={picture} />;
+            })}
           </div>
         </div>
       </div>
