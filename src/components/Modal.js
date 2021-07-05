@@ -34,7 +34,7 @@ const Modal = ({
             </div>
             <div className="col-right">
               <img src={login} alt="login" />
-              <i onClick={setModal} class="fas fa-times-circle fa-2x"></i>
+              <i onClick={setModal} className="fas fa-times-circle fa-2x"></i>
             </div>
           </div>
         </div>

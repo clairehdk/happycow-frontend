@@ -26,32 +26,7 @@ function App() {
   const [limit, setLimit] = useState(100);
   const [page, setPage] = useState(1);
   const [skip, setSkip] = useState(0);
-  const [favorites, setFavorites] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
-  // RECUPERATION DES FAVORIS
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = { userId };
-        const response = await axios.post(
-          `http://localhost:3001/user/favs`,
-          data,
-          {
-            headers: {
-              authorization: `Bearer ${userToken}`,
-            },
-          }
-        );
-        console.log(response.data);
-        setFavorites(response.data);
-        setIsLoading(false);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchData();
-  }, []);
 
   // AFFICHAGE DE LA MODAL D'INSCRIPTION / LOGIN
   const setModal = () => {
@@ -135,7 +110,7 @@ function App() {
             setLimit={setLimit}
             type={type}
             setType={setType}
-            favorites={favorites}
+            userId={userId}
           />
         </Route>
       </Switch>

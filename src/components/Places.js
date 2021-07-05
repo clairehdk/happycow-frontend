@@ -16,13 +16,16 @@ import catering from "../assets/img/catering_cat.svg";
 import delivery from "../assets/img/delivery_cat.svg";
 import food_truck from "../assets/img/truck_cat.svg";
 import vendor from "../assets/img/vendor_cat.svg";
+import Loader from "./Loader";
 
-const Places = ({ data, userToken, favorites }) => {
+const Places = ({ data, userToken, favorites, userId }) => {
   const [isFav, setIsFav] = useState(false);
+  const [newFav, setNewFav] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   let isAlreadyFavorite =
     favorites && favorites.length > 0
-      ? favorites.filter((fav) => fav.placeId === data._id)
+      ? favorites.filter((fav) => fav.placeId === data.placeId)
       : [];
 
   useEffect(() => {
@@ -31,66 +34,129 @@ const Places = ({ data, userToken, favorites }) => {
     } else {
       setIsFav(true);
     }
-  }, [isFav]);
+  }, []);
 
-  const addFav = async (event) => {
+  const handleFav = async (event) => {
     event.preventDefault();
     try {
-      // if (isAlreadyFavorite && isAlreadyFavorite.length === 0 && !isFav) {
-      const dataToSend = {
-        placeId: data.placeId,
-        name: data.name,
-        thumbnail: data.thumbnail,
-      };
-      const response = await axios.post(
-        `http://localhost:3001/fav/add`,
-        dataToSend,
-        {
-          headers: {
-            authorization: `Bearer ${userToken}`,
-          },
+      if (!isFav) {
+        if (isAlreadyFavorite && isAlreadyFavorite.length === 0 && !isFav) {
+          const dataToSend = {
+            placeId: data.placeId,
+            name: data.name,
+            thumbnail: data.thumbnail,
+          };
+          const response = await axios.post(
+            `http://localhost:3001/fav/add`,
+            dataToSend,
+            {
+              headers: {
+                authorization: `Bearer ${userToken}`,
+              },
+            }
+          );
+          console.log(response.data);
+          setIsFav(true);
         }
-      );
-      console.log(response.data);
-      setIsFav(true);
-      // } else {
-      //   alert("Favoris déjà enregistré !");
-      // }
-    } catch (error) {
-      console.log(error.message);
+      } else {
+        const dataToDelete = { userId: userId, id: favorites._id };
+        const response = await axios.post(
+          `http://localhost:3001/fav/remove`,
+          dataToDelete,
+          {
+            headers: {
+              authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setIsFav(false);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
+
+  // const addFav = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     if (isAlreadyFavorite && isAlreadyFavorite.length === 0 && !isFav) {
+  //       const dataToSend = {
+  //         placeId: data.placeId,
+  //         name: data.name,
+  //         thumbnail: data.thumbnail,
+  //       };
+  //       const response = await axios.post(
+  //         `http://localhost:3001/fav/add`,
+  //         dataToSend,
+  //         {
+  //           headers: {
+  //             authorization: `Bearer ${userToken}`,
+  //           },
+  //         }
+  //       );
+  //       console.log(response.data);
+  //       setIsFav(true);
+  //     } else {
+  //       alert("Hello");
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
+
+  // const removeFav = async () => {
+  //   try {
+  //     const dataToDelete = { userId, id: favorites._id };
+  //     const response = await axios.post(
+  //       `http://localhost:3001/fav/remove`,
+  //       dataToDelete,
+  //       {
+  //         headers: {
+  //           authorization: `Bearer ${userToken}`,
+  //         },
+  //       }
+  //     );
+  //     console.log(response.dataToDelete);
+  //     // window.location.reload(false);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   const displayStars = (number) => {
     let tab = [];
 
     for (let i = 1; i <= 5; i++) {
       if (number < i) {
-        tab.push(<i class="far fa-star"></i>);
+        tab.push(<i className="far fa-star"></i>);
       } else {
-        tab.push(<i class="fas fa-star"></i>);
+        tab.push(<i className="fas fa-star"></i>);
       }
     }
 
     return tab;
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="place">
-      <Link to={`/places/${data.placeId}`}>
-        <div className="img_favs">
-          <img className="place_img" src={data.thumbnail} alt="place" />
+      {/* <p>{newFav[0].name}</p> */}
+      <div className="img_favs">
+        <img className="place_img" src={data.thumbnail} alt="place" />
 
-          {userToken && (
-            <button className="icon_fav" onClick={addFav}>
-              {isFav ? (
-                <i className="fas fa-heart fa-lg"></i>
-              ) : (
-                <i className="far fa-heart fa-lg"></i>
-              )}
-            </button>
-          )}
-        </div>
+        {userToken && (
+          <button className="icon_fav" onClick={handleFav}>
+            {isFav ? (
+              <i className="fas fa-heart fa-lg"></i>
+            ) : (
+              <i className="far fa-heart fa-lg"></i>
+            )}
+          </button>
+        )}
+      </div>
+      <Link to={`/places/${data.placeId}`}>
         <div className="place_description">
           <div className="place_title">
             <div>

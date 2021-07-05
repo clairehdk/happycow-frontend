@@ -653,3 +653,23 @@ button {
   font-size: 2rem;
   font-weight: 700;
 }
+.fav_container {
+  width: 81%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.single_fav {
+  flex-direction: column;
+  display: flex;
+  width: 270px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.single_fav img {
+  width: 270px;
+  height: 11rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 10px;
+}

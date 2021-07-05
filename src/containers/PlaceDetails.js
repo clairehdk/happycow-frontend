@@ -29,7 +29,7 @@ const PlaceDetails = () => {
         const response = await axios.get(
           `http://localhost:3001/places/:${placeId}`
         );
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -88,7 +88,7 @@ const PlaceDetails = () => {
               <div style={{ display: "flex", width: "100%" }}>
                 <div className="block">
                   <div className="col-left">
-                    <i class="fas fa-phone-alt fa-lg"></i>
+                    <i className="fas fa-phone-alt fa-lg"></i>
                   </div>
                   <div className="col-right">
                     <h1>CONTACT</h1>
@@ -97,7 +97,7 @@ const PlaceDetails = () => {
                 </div>
                 <div className="block">
                   <div className="col-left">
-                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                    <i className="fas fa-map-marker-alt fa-lg"></i>
                   </div>
                   <div className="col-right">
                     <h1>FIND</h1>

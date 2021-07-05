@@ -2,9 +2,9 @@ import React from "react";
 
 const Fav = ({ favorites }) => {
   return (
-    <div>
+    <div className="single_fav">
       <img src={favorites.thumbnail} />
-      <h1>{favorites.name}</h1>
+      <h2>{favorites.name}</h2>
     </div>
   );
 };

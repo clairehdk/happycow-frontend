@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 const Favorites = ({ userToken, userId }) => {
   const [favs, setFavs] = useState();
   const [loading, setLoading] = useState(true);
+
   // RECUPERATION DES FAVORIS
   useEffect(() => {
     const fetchData = async () => {
@@ -34,9 +35,11 @@ const Favorites = ({ userToken, userId }) => {
   ) : (
     <div className="favorites">
       <h1>Mes favoris</h1>
-      {favs.map((fav) => {
-        return <Fav key={fav._id} favorites={fav} />;
-      })}
+      <div className="fav_container">
+        {favs.map((fav) => {
+          return <Fav key={fav._id} favorites={fav} />;
+        })}
+      </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import Limit from "../components/Limit";
 import Loader from "../components/Loader";
 
 const Home = ({
+  userId,
   name,
   setName,
   handleSearch,
@@ -16,14 +17,11 @@ const Home = ({
   type,
   setType,
   handleType,
-  favorites,
   userToken,
 }) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [status, setStatus] = useState(null);
+  const [favorites, setFavorites] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +29,20 @@ const Home = ({
         const response = await axios.get(
           `http://localhost:3001/?name=${name}&type=${type}&limit=${limit}`
         );
-        // console.log(response.data);
+        if (userToken) {
+          const data = { userId };
+          const results = await axios.post(
+            `http://localhost:3001/user/favs`,
+            data,
+            {
+              headers: {
+                authorization: `Bearer ${userToken}`,
+              },
+            }
+          );
+          console.log(results.data);
+          setFavorites(results.data);
+        }
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -41,23 +52,23 @@ const Home = ({
     fetchData();
   }, [type, name, limit]);
 
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      setStatus("Geolocation is not supported by your browser");
-    } else {
-      setStatus("Locating...");
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setStatus(null);
-          setLat(position.coords.latitude);
-          setLng(position.coords.longitude);
-        },
-        () => {
-          setStatus("Unable to retrieve your location");
-        }
-      );
-    }
-  };
+  // const getLocation = () => {
+  //   if (!navigator.geolocation) {
+  //     setStatus("Geolocation is not supported by your browser");
+  //   } else {
+  //     setStatus("Locating...");
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         setStatus(null);
+  //         setLat(position.coords.latitude);
+  //         setLng(position.coords.longitude);
+  //       },
+  //       () => {
+  //         setStatus("Unable to retrieve your location");
+  //       }
+  //     );
+  //   }
+  // };
 
   return loading ? (
     <Loader />
@@ -80,6 +91,7 @@ const Home = ({
               data={place}
               userToken={userToken}
               favorites={favorites}
+              userId={userId}
             />
           );
         })}

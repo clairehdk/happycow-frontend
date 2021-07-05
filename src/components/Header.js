@@ -8,9 +8,11 @@ const Header = ({ setModal, userToken, setUser }) => {
       <Link to="/">
         <img className="logo" src={logo} alt="logo" />
       </Link>
-      <div>
+      <div style={{ display: "flex" }}>
         <Link to="/favorites">
-          <div>{userToken && <button>Mes Favoris</button>}</div>
+          <div style={{ marginRight: "20px" }}>
+            {userToken && <button>Mes Favoris</button>}
+          </div>
         </Link>
         <div>
           {userToken ? (
