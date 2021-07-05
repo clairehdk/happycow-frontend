@@ -13,7 +13,7 @@ const Favorites = ({ userToken, userId }) => {
       try {
         const data = { userId };
         const response = await axios.post(
-          `http://localhost:3001/user/favs`,
+          `https://my-happycow-project.herokuapp.com/user/favs`,
           data,
           {
             headers: {

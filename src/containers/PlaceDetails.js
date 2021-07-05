@@ -27,7 +27,7 @@ const PlaceDetails = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/places/:${placeId}`
+          `https://my-happycow-project.herokuapp.com/places/:${placeId}`
         );
         // console.log(response.data);
         setData(response.data);

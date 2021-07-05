@@ -62,7 +62,10 @@ const SignUp = ({ setError, setUser, errorMessage, setErrorMessage }) => {
         vegstatus: vegstatus,
         birthyear: birthyear,
       };
-      const response = await axios.post("http://localhost:3001/signup", data);
+      const response = await axios.post(
+        "https://my-happycow-project.herokuapp.com/signup",
+        data
+      );
       console.log(response.data);
       const token = response.data.token;
       const userId = response.data._id;

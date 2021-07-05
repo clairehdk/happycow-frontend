@@ -46,8 +46,9 @@ const Places = ({ data, userToken, favorites, userId }) => {
             name: data.name,
             thumbnail: data.thumbnail,
           };
+          // http://localhost:3001/
           const response = await axios.post(
-            `http://localhost:3001/fav/add`,
+            `https://my-happycow-project.herokuapp.com/fav/add`,
             dataToSend,
             {
               headers: {
@@ -61,7 +62,7 @@ const Places = ({ data, userToken, favorites, userId }) => {
       } else {
         const dataToDelete = { userId: userId, id: favorites._id };
         const response = await axios.post(
-          `http://localhost:3001/fav/remove`,
+          `https://my-happycow-project.herokuapp.com/fav/remove`,
           dataToDelete,
           {
             headers: {
@@ -87,7 +88,7 @@ const Places = ({ data, userToken, favorites, userId }) => {
   //         thumbnail: data.thumbnail,
   //       };
   //       const response = await axios.post(
-  //         `http://localhost:3001/fav/add`,
+  //         `https://my-happycow-project.herokuapp.com/fav/add`,
   //         dataToSend,
   //         {
   //           headers: {
@@ -109,7 +110,7 @@ const Places = ({ data, userToken, favorites, userId }) => {
   //   try {
   //     const dataToDelete = { userId, id: favorites._id };
   //     const response = await axios.post(
-  //       `http://localhost:3001/fav/remove`,
+  //       `https://my-happycow-project.herokuapp.com/fav/remove`,
   //       dataToDelete,
   //       {
   //         headers: {

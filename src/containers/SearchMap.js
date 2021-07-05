@@ -24,7 +24,9 @@ const SearchMap = ({ currLat, currLng }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3001/");
+      const response = await axios.get(
+        "https://my-happycow-project.herokuapp.com/"
+      );
       // console.log(response.data);
       setData(response.data);
       setLoading(false);
@@ -53,7 +55,10 @@ const SearchMap = ({ currLat, currLng }) => {
       googleLat: googleCoords[0],
       googleLong: googleCoords[1],
     };
-    const response = await axios.post("http://localhost:3001/adresses", data);
+    const response = await axios.post(
+      "https://my-happycow-project.herokuapp.com/adresses",
+      data
+    );
     console.log("data =>", response.data);
     setDataNearAddress(response.data);
     setCoords([]);
@@ -81,7 +86,7 @@ const SearchMap = ({ currLat, currLng }) => {
           currLong: coords[1],
         };
         const response = await axios.post(
-          "http://localhost:3001/location",
+          "https://my-happycow-project.herokuapp.com/location",
           data
         );
         console.log("data =>", response.data);

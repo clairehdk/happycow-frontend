@@ -27,12 +27,12 @@ const Home = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/?name=${name}&type=${type}&limit=${limit}`
+          `https://my-happycow-project.herokuapp.com/?name=${name}&type=${type}&limit=${limit}`
         );
         if (userToken) {
           const data = { userId };
           const results = await axios.post(
-            `http://localhost:3001/user/favs`,
+            `https://my-happycow-project.herokuapp.com/user/favs`,
             data,
             {
               headers: {
